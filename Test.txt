@@ -1,3 +1,7 @@
 Testing...
 
-Testing pull request..
+Testing Push request..
+git push origin master
+
+Tesing pull Request..
+git pull origin master
