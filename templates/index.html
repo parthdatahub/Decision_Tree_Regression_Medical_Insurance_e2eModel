@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIC Insurance Premium Prediction : Decision Tree Regression- Designed by - Parth</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #ded9d9;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(18, 18, 18, 0.976);
+        }
+        
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 85%;
+            border: 1px solid #101010e3;
+            border-radius: 4px;
+        }
+        
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        
+        input[type="submit"] {
+            padding: 15px 30px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .visiting-card {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .visiting-card img {
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body style="background-color: rgb(215, 215, 215);">
+    <div class="container">
+        <h1 style="margin-bottom: 10px;">LIC Premium Prediction : DecisionTree Regression Designed by - Parth</h1>
+        <h4 style="margin-bottom: 10px;">Training Accuracy = 85.92% & Tesing Accuracy = 84.96%</h4>
+        <form method="GET" action="/predict_premium">
+            <div style="margin-bottom: 20px;">
+                <label>Age:</label>
+                <input type="text" name="age" value="{{ request.args.get('age') }}">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label>Sex:</label>
+                <select name="sex">
+                    <option value="male" {% if request.args.get('sex') == 'male' %}selected{% endif %}>Male</option>
+                    <option value="female" {% if request.args.get('sex') == 'female' %}selected{% endif %}>Female</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label>BMI:</label>
+                <input type="text" name="bmi" value="{{ request.args.get('bmi') }}">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label>Children:</label>
+                <input type="text" name="children" value="{{ request.args.get('children') }}">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label>Smoker:</label>
+                <input type="radio" name="smoker" value="yes" {% if request.args.get('smoker') == 'yes' %}checked{% endif %}>Yes
+                <input type="radio" name="smoker" value="no" {% if request.args.get('smoker') == 'no' %}checked{% endif %}>No
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label>Region:</label>
+                <select name="region">
+                    <option value="northeast" {% if request.args.get('region') == 'northeast' %}selected{% endif %}>Northeast</option>
+                    <option value="southeast" {% if request.args.get('region') == 'southeast' %}selected{% endif %}>Southeast</option>
+                    <option value="northwest" {% if request.args.get('region') == 'northwest' %}selected{% endif %}>Northwest</option>
+                    <option value="southwest" {% if request.args.get('region') == 'southwest' %}selected{% endif %}>Southwest</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <input type="submit" value="SUBMIT">
+            </div>
+        </form>
+        <p style="margin-top: 30px;">Your Insurance Premium Charges will be <b>{{ prediction }} /- Rs.</b> Only.</p>
+
+        <div class="visiting-card">
+  <img src="https://drive.google.com/uc?export=view&id=1lx5zwDM0pTTSV5TeV6Yhid1T83mmfSV0" alt="LIC Image" style="width: 150px; height: auto;">
+</div>
+</div>
+
+</body>
+</html>
